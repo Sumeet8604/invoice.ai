@@ -1,0 +1,68 @@
+:root {
+  --ink: #14171c;
+  --ink-raised: #1c2027;
+  --paper: #efe9dd;
+  --paper-shadow: #d9d2c1;
+  --text-on-ink: #e8e6df;
+  --text-on-ink-dim: #8b9099;
+  --text-on-paper: #1c1b18;
+  --text-on-paper-dim: #6b6558;
+  --money: #3f7a5c;
+  --money-bright: #58a37a;
+  --amber: #d9a441;
+  --overdue: #b4443b;
+  --rule: #3a3f47;
+  --rule-on-paper: #c7bfab;
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text-on-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--amber);
+  color: var(--text-on-paper);
+}
+
+/* Focus visibility for keyboard users */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

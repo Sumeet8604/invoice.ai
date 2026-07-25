@@ -1,0 +1,229 @@
+.preview-column {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+
+.receipt {
+  background: var(--paper);
+  color: var(--text-on-paper);
+  border-radius: 4px;
+  box-shadow: 0 24px 48px -20px rgba(0, 0, 0, 0.55);
+  position: relative;
+}
+
+.receipt-edge {
+  height: 14px;
+  background: radial-gradient(circle at 10px 0, transparent 8px, var(--paper) 8.5px);
+  background-size: 20px 14px;
+  background-repeat: repeat-x;
+}
+
+.receipt-edge-top {
+  border-radius: 4px 4px 0 0;
+}
+
+.receipt-edge-bottom {
+  transform: rotate(180deg);
+  border-radius: 4px 4px 0 0;
+}
+
+.receipt-body {
+  padding: 8px 32px 32px;
+}
+
+.receipt-header {
+  text-align: center;
+  border-bottom: 1px dashed var(--rule-on-paper);
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+}
+
+.receipt-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--text-on-paper-dim);
+  margin: 0 0 6px;
+}
+
+.receipt-number {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.receipt-status {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(63, 122, 92, 0.15);
+  color: var(--money);
+  margin: 0;
+}
+
+.receipt-status[data-status='overdue'] {
+  background: rgba(180, 68, 59, 0.15);
+  color: var(--overdue);
+}
+
+.receipt-status[data-status='paid'] {
+  background: rgba(63, 122, 92, 0.22);
+}
+
+.receipt-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.meta-right {
+  text-align: right;
+}
+
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-on-paper-dim);
+  margin: 0 0 4px;
+}
+
+.meta-value {
+  font-size: 14.5px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.meta-sub {
+  font-size: 12.5px;
+  color: var(--text-on-paper-dim);
+  margin: 2px 0 0;
+}
+
+.receipt-rule {
+  border-top: 1px dashed var(--rule-on-paper);
+  margin: 14px 0;
+}
+
+.receipt-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.receipt-table td {
+  padding: 8px 0;
+  vertical-align: top;
+  font-size: 13.5px;
+}
+
+.item-line-desc {
+  display: block;
+  font-weight: 500;
+}
+
+.item-line-sub {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-on-paper-dim);
+  margin-top: 2px;
+}
+
+.receipt-amount {
+  text-align: right;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.receipt-empty {
+  text-align: center;
+  color: var(--text-on-paper-dim);
+  font-style: italic;
+  padding: 18px 0;
+}
+
+.receipt-totals {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+}
+
+.totals-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  color: var(--text-on-paper-dim);
+}
+
+.totals-final {
+  color: var(--text-on-paper);
+  font-weight: 700;
+  font-size: 17px;
+  border-top: 1px solid var(--rule-on-paper);
+  margin-top: 6px;
+  padding-top: 10px;
+}
+
+.receipt-notes {
+  font-size: 12.5px;
+  color: var(--text-on-paper-dim);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.preview-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.btn-primary,
+.btn-secondary {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--money-bright);
+  color: #0e1f16;
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--text-on-ink);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--amber);
+}
+
+.preview-hint {
+  font-size: 12px;
+  color: var(--text-on-ink-dim);
+  margin-top: 10px;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .preview-column {
+    position: static;
+  }
+}

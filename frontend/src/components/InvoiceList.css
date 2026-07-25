@@ -1,0 +1,101 @@
+.invoice-list {
+  margin-top: 24px;
+}
+
+.list-heading {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-on-ink-dim);
+  margin: 0 0 12px;
+}
+
+.list-empty {
+  font-size: 13px;
+  color: var(--text-on-ink-dim);
+  font-style: italic;
+}
+
+.invoice-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.list-row {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.list-row-main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 90px 1fr 80px 90px;
+  align-items: center;
+  gap: 10px;
+  background: var(--ink-raised);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-on-ink);
+}
+
+.list-row-active .list-row-main {
+  border-color: var(--amber);
+}
+
+.list-row-main:hover {
+  border-color: var(--text-on-ink-dim);
+}
+
+.list-row-number {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--amber);
+}
+
+.list-row-client {
+  font-size: 13.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-row-status {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--money-bright);
+}
+
+.list-row-status[data-status='overdue'] {
+  color: var(--overdue);
+}
+
+.list-row-total {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-align: right;
+}
+
+.list-row-delete {
+  width: 36px;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  color: var(--text-on-ink-dim);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.list-row-delete:hover {
+  border-color: var(--overdue);
+  color: var(--overdue);
+}

@@ -1,0 +1,105 @@
+.composer {
+  background: var(--ink-raised);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 28px;
+}
+
+.composer-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  margin-bottom: 10px;
+}
+
+.composer-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 0 3px rgba(217, 164, 65, 0.2);
+}
+
+.composer-heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.3;
+  margin: 0 0 18px;
+  color: var(--text-on-ink);
+  max-width: 34ch;
+}
+
+.composer-input {
+  width: 100%;
+  background: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: var(--text-on-ink);
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 110px;
+}
+
+.composer-input::placeholder {
+  color: var(--text-on-ink-dim);
+}
+
+.composer-input:disabled {
+  opacity: 0.6;
+}
+
+.composer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.composer-hint {
+  font-size: 12.5px;
+  color: var(--text-on-ink-dim);
+  max-width: 40ch;
+}
+
+.composer-submit {
+  background: var(--amber);
+  color: #1c1508;
+  border: none;
+  border-radius: 6px;
+  padding: 11px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.composer-submit:hover:not(:disabled) {
+  box-shadow: 0 0 0 3px rgba(217, 164, 65, 0.25);
+}
+
+.composer-submit:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.composer-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.composer-error {
+  margin: 14px 0 0;
+  color: var(--overdue);
+  font-size: 13px;
+  font-family: var(--font-mono);
+}
