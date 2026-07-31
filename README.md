@@ -1,34 +1,44 @@
-# Ledger — AI-Powered Invoice Generator (MERN)
+# Invoice AI
 
-Describe your work in plain English, and Claude drafts a structured invoice —
-client, line items, quantities, rates, and due date — which you review, edit,
-save, and export as a PDF.
+Invoice AI is a full-stack MERN app for creating, reviewing, and exporting invoices with AI assistance. You can describe an invoice in plain English, and the app uses the Anthropic API to draft a structured invoice that you can review, edit, save, and export as a PDF.
 
-## Stack
-- **M**ongoDB (Mongoose) — invoice storage
-- **E**xpress — REST API
-- **R**eact (Vite) — frontend
-- **N**ode.js — server runtime
-- **Claude API (Anthropic)** — natural-language invoice parsing + reminder emails
+## Features
+- Create and manage invoices from a simple React interface
+- Use AI to parse natural-language invoice descriptions into structured form data
+- Generate a PDF version of each invoice
+- Draft payment reminder emails with AI
+- Store invoice records in MongoDB
 
-## Project structure
-```
+## Tech Stack
+- MongoDB + Mongoose
+- Express.js
+- React + Vite
+- Node.js
+- Anthropic Claude API
+
+## Project Structure
+```text
 invoice-ai/
 ├── backend/
-│   ├── controllers/       # invoiceController.js, aiController.js
-│   ├── models/             # Invoice.js (Mongoose schema)
-│   ├── routes/              # invoices.js, ai.js
-│   ├── utils/generatePdf.js # PDF export with pdfkit
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── utils/
 │   ├── server.js
 │   └── .env.example
 └── frontend/
     ├── src/
-    │   ├── api/client.js
-    │   ├── components/     # AIComposer, InvoiceForm, InvoicePreview, InvoiceList
+    │   ├── api/
+    │   ├── components/
     │   ├── App.jsx
     │   └── main.jsx
     └── index.html
 ```
+
+## Prerequisites
+- Node.js 18+
+- MongoDB running locally or a MongoDB Atlas connection string
+- An Anthropic API key
 
 ## Setup
 
@@ -38,17 +48,17 @@ cd backend
 npm install
 cp .env.example .env
 ```
-Edit `.env`:
-- `MONGO_URI` — point at a local MongoDB instance or an Atlas connection string
-- `ANTHROPIC_API_KEY` — get one at https://console.anthropic.com
-- `ANTHROPIC_MODEL` — check https://docs.claude.com for the current model name before deploying
-- `BUSINESS_NAME` / `BUSINESS_EMAIL` — shown on generated PDFs
+Update the environment variables in `.env`:
+- `MONGO_URI`: your MongoDB connection string
+- `ANTHROPIC_API_KEY`: your Anthropic API key
+- `ANTHROPIC_MODEL`: the Claude model you want to use
+- `BUSINESS_NAME` and `BUSINESS_EMAIL`: used in generated invoices and emails
 
-Start MongoDB locally if needed (`mongod`), then:
+Start MongoDB if needed, then run:
 ```bash
 npm run dev
 ```
-The API runs on `http://localhost:5000`.
+The backend will run on `http://localhost:5000`.
 
 ### 2. Frontend
 ```bash
@@ -56,39 +66,21 @@ cd frontend
 npm install
 npm run dev
 ```
-The app runs on `http://localhost:5173` and proxies `/api` requests to the backend.
+The frontend will run on `http://localhost:5173`.
 
-## How the AI feature works
-1. You type something like: *"Redesigned the logo for Marlowe Coffee, 6 hours
-   at $85/hr, plus 2 rounds of revisions at $60 flat each. Net 14 payment terms."*
-2. The frontend posts that text to `POST /api/ai/parse-invoice`.
-3. The backend sends it to the Claude API with a system prompt that instructs
-   the model to return strict JSON: client info, itemized line items with
-   inferred quantities/rates, notes, and a due date offset.
-4. The response pre-fills the invoice form — you can edit anything before saving.
+## API Overview
+| Method | Route | Description |
+| --- | --- | --- |
+| GET | `/api/invoices` | List invoices |
+| POST | `/api/invoices` | Create an invoice |
+| GET | `/api/invoices/:id` | Get one invoice |
+| PUT | `/api/invoices/:id` | Update an invoice |
+| DELETE | `/api/invoices/:id` | Delete an invoice |
+| GET | `/api/invoices/:id/pdf` | Download invoice as PDF |
+| POST | `/api/ai/parse-invoice` | Convert natural-language text into invoice draft data |
+| POST | `/api/ai/reminder-email` | Draft a reminder email for an invoice |
 
-There's a second AI endpoint, `POST /api/ai/reminder-email`, that drafts a
-short payment-reminder email for a given invoice (subject + body) — wire a
-button to it in `InvoicePreview.jsx` if you want that in the UI too.
-
-## API reference
-
-| Method | Route                      | Description                          |
-|--------|----------------------------|---------------------------------------|
-| GET    | `/api/invoices`            | List invoices (optional `?status=`)   |
-| POST   | `/api/invoices`            | Create an invoice                     |
-| GET    | `/api/invoices/:id`        | Get one invoice                       |
-| PUT    | `/api/invoices/:id`        | Update an invoice                     |
-| DELETE | `/api/invoices/:id`        | Delete an invoice                     |
-| GET    | `/api/invoices/:id/pdf`    | Download invoice as PDF               |
-| POST   | `/api/ai/parse-invoice`    | `{ text }` → structured invoice draft |
-| POST   | `/api/ai/reminder-email`   | `{ invoiceNumber, total, dueDate, clientName }` → `{ subject, body }` |
-
-## Notes / next steps
-- No auth is included — add JWT or session auth before deploying publicly,
-  since anyone with API access can currently read/write all invoices.
-- Client records are embedded in each invoice rather than a separate
-  collection; split them out if you need a client directory or repeat-client
-  analytics.
-- The status field (`draft` / `sent` / `paid` / `overdue`) is manual — wire up
-  a cron job or scheduled check if you want automatic overdue detection.
+## Notes
+- Authentication is not included yet, so this project is best suited for local development or internal use.
+- The app currently stores invoice data directly in MongoDB without a separate client collection.
+- Invoice status is manually managed for now.
